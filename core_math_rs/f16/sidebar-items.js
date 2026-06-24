@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["cr_acosf16","cr_acoshf16","cr_asinf16","cr_asinhf16","cr_atanf16"]};
+window.SIDEBAR_ITEMS = {"fn":["cr_acosf16","cr_acoshf16","cr_asinf16","cr_asinhf16","cr_atanf16","cr_atanhf16"]};
