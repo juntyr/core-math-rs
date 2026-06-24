@@ -1,0 +1,45 @@
+name: rustdoc to gh-pages
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  release:
+    name: GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install the Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+
+      - name: Build the Documentation
+        run: |
+          RUSTDOCFLAGS="\
+            --enable-index-page \
+            --generate-link-to-definition \
+            --extern-html-root-url core-math=https://docs.rs/core-math/1.1.1/ \
+            -Zunstable-options\
+          " cargo doc \
+            --all-features \
+            --no-deps
+
+      - name: Deploy the Documentation
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./target/doc
+          keep_files: false

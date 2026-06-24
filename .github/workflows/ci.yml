@@ -1,0 +1,237 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - "*.*"
+  pull_request:
+    branches:
+      - "*"
+  schedule:
+    - cron: "0 0 * * MON"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  lock:
+    name: Cargo.lock
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install the Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          profile: minimal
+          override: true
+
+      - name: Generate the minimum version lockfile
+        run: |
+          cargo update -Z minimal-versions -Z direct-minimal-versions
+          mv Cargo.lock Cargo.lock.min
+
+      - name: Generate the current version lockfile
+        run: cargo update
+
+      - name: Upload the Cargo lockfiles
+        uses: actions/upload-artifact@v7
+        with:
+          name: Cargo.lock
+          path: |
+            Cargo.lock
+            Cargo.lock.min
+
+  check:
+    name: Check
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        rust:
+          - version: "1.85"
+            exclude-features: f16
+          - version: stable
+            exclude-features: f16
+          - version: nightly
+            exclude-features: default
+        lock: [Cargo.lock, Cargo.lock.min]
+    runs-on: ${{ matrix.os }}
+    needs: lock
+
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install the Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust.version }}
+          profile: minimal
+          override: true
+
+      - name: Install power tools
+        uses: taiki-e/install-action@cargo-hack
+
+      - name: Download the Cargo lockfiles
+        uses: actions/download-artifact@v8
+        with:
+          name: Cargo.lock
+
+      - name: Rename ${{ matrix.lock }} to Cargo.lock
+        run: mv ${{ matrix.lock }} Cargo.lock
+        if: ${{ matrix.lock != 'Cargo.lock' }}
+
+      - name: Check the powerset
+        run: |
+          cargo hack check --all \
+            --feature-powerset \
+            --exclude-features ${{ matrix.rust.exclude-features }} \
+            --keep-going
+
+  test:
+    name: Test
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, ubuntu-24.04-arm, macos-26, macos-26-intel]
+        cc: [gcc, clang]
+        rust:
+          - version: "1.85"
+            exclude-features: f16
+          - version: stable
+            exclude-features: f16
+          - version: nightly
+            exclude-features: default
+        lock: [Cargo.lock, Cargo.lock.min]
+        exclude:
+          - os: ubuntu-24.04-arm
+            rust: { version: "1.85" }
+          - os: ubuntu-24.04-arm
+            rust: { version: stable }
+          - os: ubuntu-24.04-arm
+            lock: Cargo.lock.min
+          - os: macos-26
+          - os: macos-26-intel
+          - cc: gcc
+            rust: { version: "1.85" }
+          - cc: gcc
+            rust: { version: stable }
+    runs-on: ${{ matrix.os }}
+    needs: lock
+
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install the Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust.version }}
+          profile: minimal
+          override: true
+
+      - name: Install power tools
+        uses: taiki-e/install-action@cargo-hack
+
+      - name: Download the Cargo lockfiles
+        uses: actions/download-artifact@v8
+        with:
+          name: Cargo.lock
+
+      - name: Rename ${{ matrix.lock }} to Cargo.lock
+        run: mv ${{ matrix.lock }} Cargo.lock
+        if: ${{ matrix.lock != 'Cargo.lock' }}
+
+      - name: Test the powerset
+        run: |
+          cargo hack test --all \
+            --feature-powerset \
+            --exclude-features ${{ matrix.rust.exclude-features }} \
+            --keep-going
+        env:
+          CC: ${{ matrix.cc }}
+
+  fmt:
+    name: Rustfmt
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install the Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          profile: minimal
+          components: rustfmt
+          override: true
+
+      - name: Check the code formatting
+        run: cargo fmt --all -- --check
+
+  clippy:
+    name: Clippy
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        rust:
+          - version: "1.85"
+            exclude-features: f16
+          - version: stable
+            exclude-features: f16
+          - version: nightly
+            exclude-features: default
+        lock: [Cargo.lock, Cargo.lock.min]
+        exclude:
+          - lock: Cargo.lock.min
+    runs-on: ${{ matrix.os }}
+    needs: lock
+
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install the Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust.version }}
+          profile: minimal
+          components: clippy
+          override: true
+
+      - name: Install power tools
+        uses: taiki-e/install-action@cargo-hack
+
+      - name: Download the Cargo lockfiles
+        uses: actions/download-artifact@v8
+        with:
+          name: Cargo.lock
+
+      - name: Rename ${{ matrix.lock }} to Cargo.lock
+        run: mv ${{ matrix.lock }} Cargo.lock
+        if: ${{ matrix.lock != 'Cargo.lock' }}
+
+      - name: Check the code style powerset
+        if: ${{ matrix.rust == 'stable' && matrix.lock == 'Cargo.lock' }}
+        run: |
+          cargo hack clippy --all \
+            --feature-powerset \
+            --exclude-features ${{ matrix.rust.exclude-features }} \
+            --keep-going \
+            -- -D warnings
+
+      - name: Check the code style powerset
+        if: ${{ matrix.rust != 'stable' || matrix.lock != 'Cargo.lock' }}
+        run: |
+          cargo hack clippy --all \
+            --feature-powerset \
+            --exclude-features ${{ matrix.rust.exclude-features }} \
+            --keep-going \
+            -- -D warnings -A unknown-lints -A clippy::multiple-crate-versions
