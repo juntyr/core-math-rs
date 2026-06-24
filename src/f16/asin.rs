@@ -47,6 +47,7 @@ const P1: [f32; 4] = [
     h!("0x1.08e44p-4"),
 ];
 
+/// Correctly-rounded arc-sine for binary16 value.
 pub fn cr_asinf16(x: f16) -> f16 {
     let v = f32::from(x);
     let u = v.to_bits();

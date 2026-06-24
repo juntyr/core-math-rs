@@ -4,7 +4,7 @@
 - [x] asin
 - [x] asinh
 - [ ] asinpi
-- [ ] atan
+- [x] atan
 - [ ] atan2
 - [ ] atan2pi
 - [ ] atanh

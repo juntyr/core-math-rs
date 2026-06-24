@@ -64,6 +64,7 @@ const P2: [f32; 5] = [
     h!("0x1.251b5p-8"),
 ];
 
+/// Correctly-rounded arc-cosine for binary16 value.
 pub fn cr_acosf16(x: f16) -> f16 {
     let v = f32::from(x);
     let u = v.to_bits();

@@ -174,6 +174,7 @@ const P: [[f32; 6]; 16] = [
     ], /* [2^15,2^16) */ // no exception
 ];
 
+/// Correctly-rounded hyperbolic arc-cosine for binary16 value.
 pub fn cr_acoshf16(x: f16) -> f16 {
     let v = f32::from(x);
     let u = v.to_bits();

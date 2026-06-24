@@ -206,6 +206,7 @@ const P: [[f32; 7]; 19] = [
     ], // [2^15,2^16)
 ];
 
+/// Correctly-rounded hyperbolic arc-sine for binary16 value.
 pub fn cr_asinhf16(x: f16) -> f16 {
     let v = f32::from(x);
     let u = v.to_bits();
