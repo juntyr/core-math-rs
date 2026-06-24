@@ -7,7 +7,7 @@
 - [x] atan
 - [ ] atan2
 - [ ] atan2pi
-- [ ] atanh
+- [x] atanh
 - [ ] atanpi
 - [ ] cbrt
 - [ ] compound
