@@ -1,0 +1,1 @@
+rd_("C`Correctly-rounded arc-cosine for binary16 value.BnCorrectly-rounded arc-sine for binary16 value.CaCorrectly-rounded arc-tangent for binary16 value.CkCorrectly-rounded hyperbolic arc-cosine for binary16 value.CiCorrectly-rounded hyperbolic arc-sine for binary16 value.AlCI Status MSRV Rust Doc Main")
