@@ -24,7 +24,7 @@
 //!   which we test against
 //!
 //! [CORE-MATH]: https://core-math.gitlabpages.inria.fr/
-//! [`core-math`]: [core_math]
+//! [`core-math`]: https://github.com/jdh8/core-math
 
 #![cfg_attr(feature = "f16", feature(f16))]
 #![cfg_attr(feature = "f16", feature(f32_from_f16))]
