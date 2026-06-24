@@ -3,8 +3,14 @@ name = "core-math-rs"
 version = "0.1.0"
 edition = "2024"
 authors = ["Juniper Tyree <juniper.tyree@helsinki.fi>", "Paul Zimmermann <Paul.Zimmermann@inria.fr>"]
+repository = "https://github.com/juntyr/core-math-rs"
 license = "MIT"
 rust-version = "1.85"
+
+description = "Rust port of the CORE-MATH project, which provides mathematical functions with correct rounding."
+readme = "README.md"
+categories = ["mathematics", "science"]
+keywords = ["core-math", "float", "correct", "rounding"]
 
 [dependencies]
 hexf = { version = "0.2.1", default-features = false }
