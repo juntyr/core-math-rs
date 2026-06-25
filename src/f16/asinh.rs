@@ -293,7 +293,13 @@ mod tests {
             let x = f16::from_bits(b);
             let y1 = super::cr_asinhf16(x);
             let y2 = core_math::asinhf16(x);
-            assert_eq!(y1.to_bits(), y2.to_bits(), "asinhf16({x}) = {y1} vs {y2}");
+            assert_eq!(
+                y1.to_bits(),
+                y2.to_bits(),
+                "asinhf16({x} @ {b:#04x}) = ({y1} @ {y1b:#04x}) vs ({y2} @ {y2b:#04x})",
+                y1b = y1.to_bits(),
+                y2b = y2.to_bits()
+            );
         }
     }
 }
