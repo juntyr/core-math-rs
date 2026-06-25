@@ -6,6 +6,7 @@ mod atan;
 mod atanh;
 mod cbrt;
 mod cos;
+mod cosh;
 mod utils;
 
 pub use acos::cr_acosf16;
@@ -16,3 +17,4 @@ pub use atan::cr_atanf16;
 pub use atanh::cr_atanhf16;
 pub use cbrt::cr_cbrtf16;
 pub use cos::cr_cosf16;
+pub use cosh::cr_coshf16;

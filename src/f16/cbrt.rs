@@ -43,11 +43,13 @@ pub fn cr_cbrtf16(x: f16) -> f16 {
     if u32::from(TM[((xu >> 19) % 16) as usize]) == ((xu >> 13) % 64) {
         // exact cases (not supported by cbrtf)
         let expo = ((xu & 0x7fffffff) >> 23) as i32;
-        if (i32::from(TE[((xu >> 19) % 16) as usize]) == ((expo + 2) % 3)) && (
-            // @juntyr: guard against exponent for NaN and infinity
-            (expo & 0xff) != 0xff
-            // @juntyr
-        ) {
+        if (i32::from(TE[((xu >> 19) % 16) as usize]) == ((expo + 2) % 3))
+            && (
+                // @juntyr: guard against exponent for NaN and infinity
+                (expo & 0xff) != 0xff
+                // @juntyr
+            )
+        {
             tu = u32::from(tu & 0x8000)
                 .wrapping_add(
                     (((expo - 127 - i32::from(TE[((xu >> 19) % 16) as usize])) / 3) as u32) << 10,
