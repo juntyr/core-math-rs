@@ -181,8 +181,14 @@
 <a href=#181 id=181 data-nosnippet>181</a>            <span class="kw">let </span>x = f16::from_bits(b);
 <a href=#182 id=182 data-nosnippet>182</a>            <span class="kw">let </span>y1 = <span class="kw">super</span>::cr_atanf16(x);
 <a href=#183 id=183 data-nosnippet>183</a>            <span class="kw">let </span>y2 = core_math::atanf16(x);
-<a href=#184 id=184 data-nosnippet>184</a>            <span class="macro">assert_eq!</span>(y1.to_bits(), y2.to_bits(), <span class="string">"atanf16({x}) = {y1} vs {y2}"</span>);
-<a href=#185 id=185 data-nosnippet>185</a>        }
-<a href=#186 id=186 data-nosnippet>186</a>    }
-<a href=#187 id=187 data-nosnippet>187</a>}
+<a href=#184 id=184 data-nosnippet>184</a>            <span class="macro">assert_eq!</span>(
+<a href=#185 id=185 data-nosnippet>185</a>                y1.to_bits(),
+<a href=#186 id=186 data-nosnippet>186</a>                y2.to_bits(),
+<a href=#187 id=187 data-nosnippet>187</a>                <span class="string">"atanf16({x} @ {b:#04x}) = ({y1} @ {y1b:#04x}) vs ({y2} @ {y2b:#04x})"</span>,
+<a href=#188 id=188 data-nosnippet>188</a>                y1b = y1.to_bits(),
+<a href=#189 id=189 data-nosnippet>189</a>                y2b = y2.to_bits()
+<a href=#190 id=190 data-nosnippet>190</a>            );
+<a href=#191 id=191 data-nosnippet>191</a>        }
+<a href=#192 id=192 data-nosnippet>192</a>    }
+<a href=#193 id=193 data-nosnippet>193</a>}
 </code></pre></div></section></main></body></html>

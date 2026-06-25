@@ -2,7 +2,7 @@
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a>Copyright (c) 2025 Maxence Ponsardin and Paul Zimmermann
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a>This file is part of the CORE-MATH project
+<a href=#5 id=5 data-nosnippet>5</a>This file is ported from the CORE-MATH project
 <a href=#6 id=6 data-nosnippet>6</a>(https://core-math.gitlabpages.inria.fr/).
 <a href=#7 id=7 data-nosnippet>7</a>
 <a href=#8 id=8 data-nosnippet>8</a>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -8266,8 +8266,14 @@
 <a href=#8266 id=8266 data-nosnippet>8266</a>            <span class="kw">let </span>x = f16::from_bits(b);
 <a href=#8267 id=8267 data-nosnippet>8267</a>            <span class="kw">let </span>y1 = <span class="kw">super</span>::cr_cosf16(x);
 <a href=#8268 id=8268 data-nosnippet>8268</a>            <span class="kw">let </span>y2 = core_math::cosf16(x);
-<a href=#8269 id=8269 data-nosnippet>8269</a>            <span class="macro">assert_eq!</span>(y1.to_bits(), y2.to_bits(), <span class="string">"cosf16({x}) = {y1} vs {y2}"</span>);
-<a href=#8270 id=8270 data-nosnippet>8270</a>        }
-<a href=#8271 id=8271 data-nosnippet>8271</a>    }
-<a href=#8272 id=8272 data-nosnippet>8272</a>}
+<a href=#8269 id=8269 data-nosnippet>8269</a>            <span class="macro">assert_eq!</span>(
+<a href=#8270 id=8270 data-nosnippet>8270</a>                y1.to_bits(),
+<a href=#8271 id=8271 data-nosnippet>8271</a>                y2.to_bits(),
+<a href=#8272 id=8272 data-nosnippet>8272</a>                <span class="string">"cosf16({x} @ {b:#04x}) = ({y1} @ {y1b:#04x}) vs ({y2} @ {y2b:#04x})"</span>,
+<a href=#8273 id=8273 data-nosnippet>8273</a>                y1b = y1.to_bits(),
+<a href=#8274 id=8274 data-nosnippet>8274</a>                y2b = y2.to_bits()
+<a href=#8275 id=8275 data-nosnippet>8275</a>            );
+<a href=#8276 id=8276 data-nosnippet>8276</a>        }
+<a href=#8277 id=8277 data-nosnippet>8277</a>    }
+<a href=#8278 id=8278 data-nosnippet>8278</a>}
 </code></pre></div></section></main></body></html>

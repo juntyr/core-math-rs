@@ -2,7 +2,7 @@
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a>Copyright (c) 2025 Maxence Ponsardin.
 <a href=#4 id=4 data-nosnippet>4</a>
-<a href=#5 id=5 data-nosnippet>5</a>This file is part of the CORE-MATH project
+<a href=#5 id=5 data-nosnippet>5</a>This file is ported from the CORE-MATH project
 <a href=#6 id=6 data-nosnippet>6</a>(https://core-math.gitlabpages.inria.fr/).
 <a href=#7 id=7 data-nosnippet>7</a>
 <a href=#8 id=8 data-nosnippet>8</a>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -74,8 +74,14 @@
 <a href=#74 id=74 data-nosnippet>74</a>            <span class="kw">let </span>x = f16::from_bits(b);
 <a href=#75 id=75 data-nosnippet>75</a>            <span class="kw">let </span>y1 = <span class="kw">super</span>::cr_cbrtf16(x);
 <a href=#76 id=76 data-nosnippet>76</a>            <span class="kw">let </span>y2 = core_math::cbrtf16(x);
-<a href=#77 id=77 data-nosnippet>77</a>            <span class="macro">assert_eq!</span>(y1.to_bits(), y2.to_bits(), <span class="string">"cbrtf16({x}) = {y1} vs {y2}"</span>);
-<a href=#78 id=78 data-nosnippet>78</a>        }
-<a href=#79 id=79 data-nosnippet>79</a>    }
-<a href=#80 id=80 data-nosnippet>80</a>}
+<a href=#77 id=77 data-nosnippet>77</a>            <span class="macro">assert_eq!</span>(
+<a href=#78 id=78 data-nosnippet>78</a>                y1.to_bits(),
+<a href=#79 id=79 data-nosnippet>79</a>                y2.to_bits(),
+<a href=#80 id=80 data-nosnippet>80</a>                <span class="string">"cbrtf16({x} @ {b:#04x}) = ({y1} @ {y1b:#04x}) vs ({y2} @ {y2b:#04x})"</span>,
+<a href=#81 id=81 data-nosnippet>81</a>                y1b = y1.to_bits(),
+<a href=#82 id=82 data-nosnippet>82</a>                y2b = y2.to_bits()
+<a href=#83 id=83 data-nosnippet>83</a>            );
+<a href=#84 id=84 data-nosnippet>84</a>        }
+<a href=#85 id=85 data-nosnippet>85</a>    }
+<a href=#86 id=86 data-nosnippet>86</a>}
 </code></pre></div></section></main></body></html>

@@ -293,8 +293,14 @@
 <a href=#293 id=293 data-nosnippet>293</a>            <span class="kw">let </span>x = f16::from_bits(b);
 <a href=#294 id=294 data-nosnippet>294</a>            <span class="kw">let </span>y1 = <span class="kw">super</span>::cr_asinhf16(x);
 <a href=#295 id=295 data-nosnippet>295</a>            <span class="kw">let </span>y2 = core_math::asinhf16(x);
-<a href=#296 id=296 data-nosnippet>296</a>            <span class="macro">assert_eq!</span>(y1.to_bits(), y2.to_bits(), <span class="string">"asinhf16({x}) = {y1} vs {y2}"</span>);
-<a href=#297 id=297 data-nosnippet>297</a>        }
-<a href=#298 id=298 data-nosnippet>298</a>    }
-<a href=#299 id=299 data-nosnippet>299</a>}
+<a href=#296 id=296 data-nosnippet>296</a>            <span class="macro">assert_eq!</span>(
+<a href=#297 id=297 data-nosnippet>297</a>                y1.to_bits(),
+<a href=#298 id=298 data-nosnippet>298</a>                y2.to_bits(),
+<a href=#299 id=299 data-nosnippet>299</a>                <span class="string">"asinhf16({x} @ {b:#04x}) = ({y1} @ {y1b:#04x}) vs ({y2} @ {y2b:#04x})"</span>,
+<a href=#300 id=300 data-nosnippet>300</a>                y1b = y1.to_bits(),
+<a href=#301 id=301 data-nosnippet>301</a>                y2b = y2.to_bits()
+<a href=#302 id=302 data-nosnippet>302</a>            );
+<a href=#303 id=303 data-nosnippet>303</a>        }
+<a href=#304 id=304 data-nosnippet>304</a>    }
+<a href=#305 id=305 data-nosnippet>305</a>}
 </code></pre></div></section></main></body></html>
