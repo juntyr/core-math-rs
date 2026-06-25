@@ -147,9 +147,19 @@ jobs:
         run: mv ${{ matrix.lock }} Cargo.lock
         if: ${{ matrix.lock != 'Cargo.lock' }}
 
-      - name: Test the powerset
+      - name: Test the powerset (debug)
         run: |
           cargo hack test --all \
+            --feature-powerset \
+            --exclude-features ${{ matrix.rust.exclude-features }} \
+            --keep-going
+        env:
+          CC: ${{ matrix.cc }}
+
+      - name: Test the powerset (release)
+        run: |
+          cargo hack test --all \
+            --release \
             --feature-powerset \
             --exclude-features ${{ matrix.rust.exclude-features }} \
             --keep-going
