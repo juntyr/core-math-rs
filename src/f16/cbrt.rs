@@ -38,12 +38,16 @@ pub fn cr_cbrtf16(x: f16) -> f16 {
 
     let t = x;
     let mut tu = t.to_bits();
+    let debug = tu == 0x7d5c;
     let xf = f32::from(x);
     let xu = xf.to_bits();
     if u32::from(TM[((xu >> 19) % 16) as usize]) == ((xu >> 13) % 64) {
         // exact cases (not supported by cbrtf)
         let expo = ((xu & 0x7fffffff) >> 23) as i32;
         if i32::from(TE[((xu >> 19) % 16) as usize]) == ((expo + 2) % 3) {
+            if debug {
+                println!("a");
+            }
             tu = u32::from(tu & 0x8000)
                 .wrapping_add(
                     (((expo - 127 - i32::from(TE[((xu >> 19) % 16) as usize])) / 3) as u32) << 10,
@@ -58,9 +62,23 @@ pub fn cr_cbrtf16(x: f16) -> f16 {
         if ((expo % 3) == 1) && (expo < 31) {
             // avoid sNaN and k != 1 mod 3
             tu = ((((expo - 16) / 3 + 15) << 10) + 0x018b + i32::from((tu >> 15) << 15)) as u16;
+            if debug {
+                println!("b");
+            }
             return (f32::from(f16::from_bits(tu)) + h!("0x1p-16") * (f32::from(tu >> 15) - 0.5))
                 as f16;
         }
+    }
+    if debug {
+        println!("c");
+    }
+    if debug {
+        println!(
+            "{x} {:#x} {xf} {xu} {} {}",
+            x.to_bits(),
+            xf.cbrt(),
+            xf.cbrt() as f16
+        );
     }
     // TODO: which cbrt should be called here?
     xf.cbrt() as f16
