@@ -33,7 +33,7 @@ For 0 <= i < 16, P[i] is a degree-5 polynomial approximating
 acosh(x)/sqrt(x-1) for 0 <= i < 5, and acosh(x) for 5 <= i < 16.
 They were afterwards optimized to decrease the number of exceptions. */
 
-// ([+-]?0x[0-9a-f]+\.[0-9a-f]+p[+-][0-9]+) -> h!("$1")
+// ([+-]?0x[0-9a-f]+(\.[0-9a-f]+)?p[+-][0-9]+) -> h!("$1")
 const P: [[f32; 6]; 16] = [
     [
         h!("0x1.91940ap+0"),

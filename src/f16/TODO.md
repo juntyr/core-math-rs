@@ -11,7 +11,7 @@
 - [ ] atanpi
 - [x] cbrt
 - [ ] compound
-- [ ] cos
+- [x] cos
 - [ ] cosh
 - [ ] cospi
 - [ ] erf
