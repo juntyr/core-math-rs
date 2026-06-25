@@ -9,7 +9,7 @@
 - [ ] atan2pi
 - [x] atanh
 - [ ] atanpi
-- [ ] cbrt
+- [x] cbrt
 - [ ] compound
 - [ ] cos
 - [ ] cosh
