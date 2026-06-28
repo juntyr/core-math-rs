@@ -15,7 +15,7 @@
 - [x] cosh
 - [ ] cospi
 - [x] erf
-- [ ] erfc
+- [x] erfc
 - [ ] exp
 - [ ] exp10
 - [ ] exp10m1
