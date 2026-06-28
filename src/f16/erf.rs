@@ -682,4 +682,14 @@ mod tests {
             );
         }
     }
+
+    #[test]
+    fn edge() {
+        assert_eq!(super::cr_erff16(-f16::NAN).to_bits(), (-f16::NAN).to_bits());
+        assert_eq!(super::cr_erff16(-f16::INFINITY), -1.0);
+        assert_eq!(super::cr_erff16(-0.0).to_bits(), (-0.0_f16).to_bits());
+        assert_eq!(super::cr_erff16(0.0).to_bits(), (0.0_f16).to_bits());
+        assert_eq!(super::cr_erff16(f16::INFINITY), 1.0);
+        assert_eq!(super::cr_erff16(f16::NAN).to_bits(), (f16::NAN).to_bits());
+    }
 }

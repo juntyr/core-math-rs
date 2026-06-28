@@ -8275,4 +8275,22 @@ mod tests {
             );
         }
     }
+
+    #[test]
+    fn edge() {
+        assert_eq!(super::cr_cosf16(-f16::NAN).to_bits(), (f16::NAN).to_bits());
+        assert_eq!(
+            super::cr_cosf16(-f16::INFINITY).to_bits(),
+            (f16::NAN).to_bits()
+        );
+        assert_eq!(super::cr_cosf16(-std::f16::consts::PI), -1.0);
+        assert_eq!(super::cr_cosf16(-0.0), 1.0);
+        assert_eq!(super::cr_cosf16(0.0), 1.0);
+        assert_eq!(super::cr_cosf16(std::f16::consts::PI), -1.0);
+        assert_eq!(
+            super::cr_cosf16(f16::INFINITY).to_bits(),
+            (f16::NAN).to_bits()
+        );
+        assert_eq!(super::cr_cosf16(f16::NAN).to_bits(), (f16::NAN).to_bits());
+    }
 }
