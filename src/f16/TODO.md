@@ -12,9 +12,9 @@
 - [x] cbrt
 - [ ] compound
 - [x] cos
-- [ ] cosh
+- [x] cosh
 - [ ] cospi
-- [ ] erf
+- [x] erf
 - [ ] erfc
 - [ ] exp
 - [ ] exp10
