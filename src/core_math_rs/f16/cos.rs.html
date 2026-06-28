@@ -8275,5 +8275,23 @@
 <a href=#8275 id=8275 data-nosnippet>8275</a>            );
 <a href=#8276 id=8276 data-nosnippet>8276</a>        }
 <a href=#8277 id=8277 data-nosnippet>8277</a>    }
-<a href=#8278 id=8278 data-nosnippet>8278</a>}
+<a href=#8278 id=8278 data-nosnippet>8278</a>
+<a href=#8279 id=8279 data-nosnippet>8279</a>    <span class="attr">#[test]
+<a href=#8280 id=8280 data-nosnippet>8280</a>    </span><span class="kw">fn </span>edge() {
+<a href=#8281 id=8281 data-nosnippet>8281</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_cosf16(-f16::NAN).to_bits(), (f16::NAN).to_bits());
+<a href=#8282 id=8282 data-nosnippet>8282</a>        <span class="macro">assert_eq!</span>(
+<a href=#8283 id=8283 data-nosnippet>8283</a>            <span class="kw">super</span>::cr_cosf16(-f16::INFINITY).to_bits(),
+<a href=#8284 id=8284 data-nosnippet>8284</a>            (f16::NAN).to_bits()
+<a href=#8285 id=8285 data-nosnippet>8285</a>        );
+<a href=#8286 id=8286 data-nosnippet>8286</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_cosf16(-std::f16::consts::PI), -<span class="number">1.0</span>);
+<a href=#8287 id=8287 data-nosnippet>8287</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_cosf16(-<span class="number">0.0</span>), <span class="number">1.0</span>);
+<a href=#8288 id=8288 data-nosnippet>8288</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_cosf16(<span class="number">0.0</span>), <span class="number">1.0</span>);
+<a href=#8289 id=8289 data-nosnippet>8289</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_cosf16(std::f16::consts::PI), -<span class="number">1.0</span>);
+<a href=#8290 id=8290 data-nosnippet>8290</a>        <span class="macro">assert_eq!</span>(
+<a href=#8291 id=8291 data-nosnippet>8291</a>            <span class="kw">super</span>::cr_cosf16(f16::INFINITY).to_bits(),
+<a href=#8292 id=8292 data-nosnippet>8292</a>            (f16::NAN).to_bits()
+<a href=#8293 id=8293 data-nosnippet>8293</a>        );
+<a href=#8294 id=8294 data-nosnippet>8294</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_cosf16(f16::NAN).to_bits(), (f16::NAN).to_bits());
+<a href=#8295 id=8295 data-nosnippet>8295</a>    }
+<a href=#8296 id=8296 data-nosnippet>8296</a>}
 </code></pre></div></section></main></body></html>
