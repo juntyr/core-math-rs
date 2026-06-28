@@ -2,7 +2,7 @@
 
 Copyright (c) 2022-2025 Alexei Sibidanov and Paul Zimmermann
 
-This file is part of the CORE-MATH project
+This file is ported from the CORE-MATH project
 (https://core-math.gitlabpages.inria.fr/).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

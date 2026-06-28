@@ -190,4 +190,23 @@ mod tests {
             );
         }
     }
+
+    #[test]
+    fn edge() {
+        assert_eq!(
+            super::cr_atanf16(-f16::NAN).to_bits(),
+            (-f16::NAN).to_bits()
+        );
+        assert_eq!(
+            super::cr_atanf16(-f16::INFINITY),
+            -std::f16::consts::FRAC_PI_2,
+        );
+        assert_eq!(super::cr_atanf16(-0.0).to_bits(), (-0.0_f16).to_bits());
+        assert_eq!(super::cr_atanf16(0.0).to_bits(), (0.0_f16).to_bits());
+        assert_eq!(
+            super::cr_atanf16(f16::INFINITY),
+            std::f16::consts::FRAC_PI_2
+        );
+        assert_eq!(super::cr_atanf16(f16::NAN).to_bits(), (f16::NAN).to_bits());
+    }
 }
