@@ -298,7 +298,7 @@ mod tests {
         );
         assert_eq!(
             super::cr_acoshf16(-f16::INFINITY).to_bits(),
-            (f16::NAN).to_bits() // FIXME: sign
+            super::snanf16().to_bits() // FIXME: sign
         );
         assert_eq!(super::cr_acoshf16(-0.0).to_bits(), (f16::NAN).to_bits());
         assert_eq!(super::cr_acoshf16(0.0).to_bits(), (f16::NAN).to_bits());

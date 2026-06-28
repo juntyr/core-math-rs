@@ -1156,13 +1156,13 @@ mod tests {
         );
         assert_eq!(
             super::cr_atanhf16(-f16::INFINITY).to_bits(),
-            (f16::NAN).to_bits() // FIXME: sign
+            super::snanf16().to_bits() // FIXME: sign
         );
         assert_eq!(super::cr_atanhf16(-0.0).to_bits(), (-0.0_f16).to_bits());
         assert_eq!(super::cr_atanhf16(0.0).to_bits(), (0.0_f16).to_bits());
         assert_eq!(
             super::cr_atanhf16(f16::INFINITY).to_bits(),
-            (f16::NAN).to_bits() // FIXME: sign
+            super::snanf16().to_bits() // FIXME: sign
         );
         assert_eq!(super::cr_atanhf16(f16::NAN).to_bits(), (f16::NAN).to_bits());
     }
