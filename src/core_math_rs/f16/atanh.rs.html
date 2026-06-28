@@ -1147,5 +1147,24 @@
 <a href=#1147 id=1147 data-nosnippet>1147</a>            );
 <a href=#1148 id=1148 data-nosnippet>1148</a>        }
 <a href=#1149 id=1149 data-nosnippet>1149</a>    }
-<a href=#1150 id=1150 data-nosnippet>1150</a>}
+<a href=#1150 id=1150 data-nosnippet>1150</a>
+<a href=#1151 id=1151 data-nosnippet>1151</a>    <span class="attr">#[test]
+<a href=#1152 id=1152 data-nosnippet>1152</a>    </span><span class="kw">fn </span>edge() {
+<a href=#1153 id=1153 data-nosnippet>1153</a>        <span class="macro">assert_eq!</span>(
+<a href=#1154 id=1154 data-nosnippet>1154</a>            <span class="kw">super</span>::cr_atanhf16(-f16::NAN).to_bits(),
+<a href=#1155 id=1155 data-nosnippet>1155</a>            (-f16::NAN).to_bits()
+<a href=#1156 id=1156 data-nosnippet>1156</a>        );
+<a href=#1157 id=1157 data-nosnippet>1157</a>        <span class="macro">assert_eq!</span>(
+<a href=#1158 id=1158 data-nosnippet>1158</a>            <span class="kw">super</span>::cr_atanhf16(-f16::INFINITY).to_bits(),
+<a href=#1159 id=1159 data-nosnippet>1159</a>            (f16::NAN).to_bits() <span class="comment">// FIXME: sign
+<a href=#1160 id=1160 data-nosnippet>1160</a>        </span>);
+<a href=#1161 id=1161 data-nosnippet>1161</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_atanhf16(-<span class="number">0.0</span>).to_bits(), (-<span class="number">0.0_f16</span>).to_bits());
+<a href=#1162 id=1162 data-nosnippet>1162</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_atanhf16(<span class="number">0.0</span>).to_bits(), (<span class="number">0.0_f16</span>).to_bits());
+<a href=#1163 id=1163 data-nosnippet>1163</a>        <span class="macro">assert_eq!</span>(
+<a href=#1164 id=1164 data-nosnippet>1164</a>            <span class="kw">super</span>::cr_atanhf16(f16::INFINITY).to_bits(),
+<a href=#1165 id=1165 data-nosnippet>1165</a>            (f16::NAN).to_bits() <span class="comment">// FIXME: sign
+<a href=#1166 id=1166 data-nosnippet>1166</a>        </span>);
+<a href=#1167 id=1167 data-nosnippet>1167</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_atanhf16(f16::NAN).to_bits(), (f16::NAN).to_bits());
+<a href=#1168 id=1168 data-nosnippet>1168</a>    }
+<a href=#1169 id=1169 data-nosnippet>1169</a>}
 </code></pre></div></section></main></body></html>

@@ -193,5 +193,29 @@
 <a href=#193 id=193 data-nosnippet>193</a>            );
 <a href=#194 id=194 data-nosnippet>194</a>        }
 <a href=#195 id=195 data-nosnippet>195</a>    }
-<a href=#196 id=196 data-nosnippet>196</a>}
+<a href=#196 id=196 data-nosnippet>196</a>
+<a href=#197 id=197 data-nosnippet>197</a>    <span class="attr">#[test]
+<a href=#198 id=198 data-nosnippet>198</a>    </span><span class="kw">fn </span>edge() {
+<a href=#199 id=199 data-nosnippet>199</a>        <span class="macro">assert_eq!</span>(
+<a href=#200 id=200 data-nosnippet>200</a>            <span class="kw">super</span>::cr_asinf16(-f16::NAN).to_bits(),
+<a href=#201 id=201 data-nosnippet>201</a>            <span class="kw">super</span>::snanf16().to_bits() <span class="comment">// FIXME: sign
+<a href=#202 id=202 data-nosnippet>202</a>        </span>);
+<a href=#203 id=203 data-nosnippet>203</a>        <span class="macro">assert_eq!</span>(
+<a href=#204 id=204 data-nosnippet>204</a>            <span class="kw">super</span>::cr_asinf16(-f16::INFINITY).to_bits(),
+<a href=#205 id=205 data-nosnippet>205</a>            <span class="kw">super</span>::snanf16().to_bits() <span class="comment">// FIXME: sign
+<a href=#206 id=206 data-nosnippet>206</a>        </span>);
+<a href=#207 id=207 data-nosnippet>207</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_asinf16(-<span class="number">1.0</span>), -std::f16::consts::FRAC_PI_2);
+<a href=#208 id=208 data-nosnippet>208</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_asinf16(-<span class="number">0.0</span>).to_bits(), (-<span class="number">0.0_f16</span>).to_bits());
+<a href=#209 id=209 data-nosnippet>209</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_asinf16(<span class="number">0.0</span>).to_bits(), (<span class="number">0.0_f16</span>).to_bits());
+<a href=#210 id=210 data-nosnippet>210</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_asinf16(<span class="number">1.0</span>), std::f16::consts::FRAC_PI_2);
+<a href=#211 id=211 data-nosnippet>211</a>        <span class="macro">assert_eq!</span>(
+<a href=#212 id=212 data-nosnippet>212</a>            <span class="kw">super</span>::cr_asinf16(f16::INFINITY).to_bits(),
+<a href=#213 id=213 data-nosnippet>213</a>            <span class="kw">super</span>::snanf16().to_bits() <span class="comment">// FIXME: sign
+<a href=#214 id=214 data-nosnippet>214</a>        </span>);
+<a href=#215 id=215 data-nosnippet>215</a>        <span class="macro">assert_eq!</span>(
+<a href=#216 id=216 data-nosnippet>216</a>            <span class="kw">super</span>::cr_asinf16(f16::NAN).to_bits(),
+<a href=#217 id=217 data-nosnippet>217</a>            <span class="kw">super</span>::snanf16().to_bits() <span class="comment">// FIXME: sign
+<a href=#218 id=218 data-nosnippet>218</a>        </span>);
+<a href=#219 id=219 data-nosnippet>219</a>    }
+<a href=#220 id=220 data-nosnippet>220</a>}
 </code></pre></div></section></main></body></html>
