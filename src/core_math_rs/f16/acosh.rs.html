@@ -300,11 +300,17 @@
 <a href=#300 id=300 data-nosnippet>300</a>            <span class="kw">super</span>::cr_acoshf16(-f16::INFINITY).to_bits(),
 <a href=#301 id=301 data-nosnippet>301</a>            <span class="kw">super</span>::snanf16().to_bits() <span class="comment">// FIXME: sign
 <a href=#302 id=302 data-nosnippet>302</a>        </span>);
-<a href=#303 id=303 data-nosnippet>303</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_acoshf16(-<span class="number">0.0</span>).to_bits(), (f16::NAN).to_bits());
-<a href=#304 id=304 data-nosnippet>304</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_acoshf16(<span class="number">0.0</span>).to_bits(), (f16::NAN).to_bits());
-<a href=#305 id=305 data-nosnippet>305</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_acoshf16(<span class="number">1.0</span>).to_bits(), (<span class="number">0.0_f16</span>).to_bits());
-<a href=#306 id=306 data-nosnippet>306</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_acoshf16(f16::INFINITY), f16::INFINITY);
-<a href=#307 id=307 data-nosnippet>307</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_acoshf16(f16::NAN).to_bits(), (f16::NAN).to_bits());
-<a href=#308 id=308 data-nosnippet>308</a>    }
-<a href=#309 id=309 data-nosnippet>309</a>}
+<a href=#303 id=303 data-nosnippet>303</a>        <span class="macro">assert_eq!</span>(
+<a href=#304 id=304 data-nosnippet>304</a>            <span class="kw">super</span>::cr_acoshf16(-<span class="number">0.0</span>).to_bits(),
+<a href=#305 id=305 data-nosnippet>305</a>            <span class="kw">super</span>::snanf16().to_bits() <span class="comment">// FIXME: sign
+<a href=#306 id=306 data-nosnippet>306</a>        </span>);
+<a href=#307 id=307 data-nosnippet>307</a>        <span class="macro">assert_eq!</span>(
+<a href=#308 id=308 data-nosnippet>308</a>            <span class="kw">super</span>::cr_acoshf16(<span class="number">0.0</span>).to_bits(),
+<a href=#309 id=309 data-nosnippet>309</a>            <span class="kw">super</span>::snanf16().to_bits() <span class="comment">// FIXME: sign
+<a href=#310 id=310 data-nosnippet>310</a>        </span>);
+<a href=#311 id=311 data-nosnippet>311</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_acoshf16(<span class="number">1.0</span>).to_bits(), (<span class="number">0.0_f16</span>).to_bits());
+<a href=#312 id=312 data-nosnippet>312</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_acoshf16(f16::INFINITY), f16::INFINITY);
+<a href=#313 id=313 data-nosnippet>313</a>        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::cr_acoshf16(f16::NAN).to_bits(), (f16::NAN).to_bits());
+<a href=#314 id=314 data-nosnippet>314</a>    }
+<a href=#315 id=315 data-nosnippet>315</a>}
 </code></pre></div></section></main></body></html>
